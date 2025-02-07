@@ -21,7 +21,7 @@ const BottomTabNavigator = () => {
             } else if (route.name === "Resep") {
               iconName = "book-outline";
             } else if (route.name === "Profile") {
-              iconName = "person-outline";
+              iconName = "Person-outline";
             }
             return <Ionicons name={iconName as any} size={size} color={color} />;
           },

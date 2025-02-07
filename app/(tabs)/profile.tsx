@@ -5,11 +5,11 @@ const ProfileScreen = () => {
   return (
     <View style={styles.container}>
       <Image
-        source={{ uri: "https://robohash.org/rizal" }}
+        source={{ uri: "https://robohash.org/irunnm" }}
         style={styles.profileImage}
       />
-      <Text style={styles.name}>Muhammad Rizal</Text>
-      <Text style={styles.email}>runfromback911@gmail.com</Text>
+      <Text style={styles.name}>Khoirun Nugraha Wida Rizanta</Text>
+      <Text style={styles.email}>Khoirunnugraha145@gmail.com</Text>
 
       <TextInput style={styles.input} placeholder="Email" value="*****@gmail.com" editable={false} />
       <TextInput style={styles.input} placeholder="Password" secureTextEntry={true} />
@@ -22,6 +22,7 @@ const ProfileScreen = () => {
         <Text style={styles.aboutTitle}>Tentang aplikasi</Text>
         <Text style={styles.aboutText}>
           Aplikasi ini dibuat sebagai syarat untuk menyelesaikan ujian UTS mobile programming.
+          Aplikasi ini dibuat dengan menggunakan react native expo
         </Text>
       </View>
 
@@ -94,6 +95,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: 8,
     marginTop: 20,
+    top:100
   },
   logoutText: {
     fontSize: 16,
