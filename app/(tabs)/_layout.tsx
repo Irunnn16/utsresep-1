@@ -20,9 +20,10 @@ export default function TabLayout() {
 
   return (
     <Tabs>
-      <Tabs.Screen name='home' />
-      <Tabs.Screen name='resep' />
-      <Tabs.Screen name='profile' />
+      <Tabs.Screen name='Home' />
+      <Tabs.Screen name='Resep' />
+      <Tabs.Screen name='Profile' />
+      
     </Tabs>
   );
 }

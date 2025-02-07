@@ -1,20 +1,14 @@
-import React from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import HomeScreen from "./(tabs)/home";
-import SignInScreen from "./sign-in";
+import { SessionProvider } from '@/contexts/ctx';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { Slot } from 'expo-router';
 
-const Stack = createNativeStackNavigator();
-
-const App = () => {
+export default function Root() {
+  // Set up the auth context and render our layout inside of it.
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Login">
-        <Stack.Screen name="Login" component={SignInScreen} />
-        <Stack.Screen name="Home" component={HomeScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <QueryClientProvider client={new QueryClient()}>
+      <SessionProvider>
+        <Slot />
+      </SessionProvider>
+    </QueryClientProvider>
   );
-};
-
-export default App;
+}

@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import React, { useEffect, useState } from "react";
 import {
   View,
@@ -31,11 +32,11 @@ const ResepScreen: React.FC = () => {
     recipe.name.toLowerCase().includes(search.toLowerCase())
   );
 
+  const navigation = useNavigation();
+
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>Resep</Text>
 
-      {/* Search Bar */}
       <TextInput
         style={styles.searchBar}
         placeholder="Cari resep"
@@ -43,12 +44,11 @@ const ResepScreen: React.FC = () => {
         onChangeText={(text) => setSearch(text)}
       />
 
-      {/* List Resep */}
       <FlatList
         data={filteredRecipes}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
-          <TouchableOpacity style={styles.card} onPress={() => alert(`Detail ${item.name}`)}>
+          <TouchableOpacity style={styles.card}  >
             <Image source={{ uri: item.image }} style={styles.image} />
             <View style={styles.textContainer}>
               <Text style={styles.title}>{item.name}</Text>

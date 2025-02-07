@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, FlatList, Image, StyleSheet } from "react-native";
+import { View, Text, FlatList, Image, StyleSheet, TouchableOpacity } from "react-native";
 
 interface Recipe {
   id: number;
@@ -17,7 +17,7 @@ const HomeScreen: React.FC = () => {
         const response = await fetch("https://dummyjson.com/recipes");
         const data = await response.json();
         if (data.recipes) {
-          setRecipes(data.recipes);
+          setRecipes(data.recipes.slice(0, 3));
         }
       } catch (error) {
         console.error("Error fetching recipes:", error);
@@ -29,18 +29,20 @@ const HomeScreen: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>Rekomen Resep Hari Ini</Text>
+      <Text style={styles.header}>Rekomen Resep Hari Ini, Bund :)</Text>
       <FlatList
         data={recipes}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
-          <View style={styles.card}>
+         <TouchableOpacity >
+           <View style={styles.card}>
             <Image source={{ uri: item.image }} style={styles.image} />
             <View>
               <Text style={styles.title}>{item.name}</Text>
               <Text style={styles.description}>{item.description}</Text>
             </View>
           </View>
+         </TouchableOpacity>
         )}
       />
     </View>

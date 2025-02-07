@@ -5,17 +5,17 @@ const ProfileScreen = () => {
   return (
     <View style={styles.container}>
       <Image
-        source={{ uri: "https://randomuser.me/api/portraits/men/1.jpg" }}
+        source={{ uri: "https://robohash.org/rizal" }}
         style={styles.profileImage}
       />
       <Text style={styles.name}>Muhammad Rizal</Text>
       <Text style={styles.email}>runfromback911@gmail.com</Text>
 
-      <TextInput style={styles.input} placeholder="Email" value="username@domain.com" editable={false} />
+      <TextInput style={styles.input} placeholder="Email" value="*****@gmail.com" editable={false} />
       <TextInput style={styles.input} placeholder="Password" secureTextEntry={true} />
 
       <TouchableOpacity style={styles.updateButton}>
-        <Text style={styles.updateText}>✓ Update Profile</Text>
+        <Text style={styles.updateText}> Update Profile</Text>
       </TouchableOpacity>
 
       <View style={styles.aboutSection}>
@@ -26,7 +26,7 @@ const ProfileScreen = () => {
       </View>
 
       <TouchableOpacity style={styles.logoutButton}>
-        <Text style={styles.logoutText}>🚪 Keluar</Text>
+        <Text style={styles.logoutText}> Keluar</Text>
       </TouchableOpacity>
     </View>
   );
