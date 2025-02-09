@@ -1,4 +1,5 @@
-import { useNavigation } from "@react-navigation/native";
+import { Octicons } from "@expo/vector-icons";
+import { router } from "expo-router";
 import React, { useEffect, useState } from "react";
 import {
   View,
@@ -32,11 +33,11 @@ const ResepScreen: React.FC = () => {
     recipe.name.toLowerCase().includes(search.toLowerCase())
   );
 
-  const navigation = useNavigation();
 
   return (
     <View style={styles.container}>
-
+      <View style={styles.viewSearch}>
+      <Octicons name="search" size={16} />
       <TextInput
         style={styles.searchBar}
         placeholder="Cari resep"
@@ -44,11 +45,12 @@ const ResepScreen: React.FC = () => {
         onChangeText={(text) => setSearch(text)}
       />
 
+      </View>
       <FlatList
         data={filteredRecipes}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
-          <TouchableOpacity style={styles.card}  >
+          <TouchableOpacity style={styles.card}  onPress={() => router.push({pathname:"/Resep/page", params: {id: item.id.toString()}})}>
             <Image source={{ uri: item.image }} style={styles.image} />
             <View style={styles.textContainer}>
               <Text style={styles.title}>{item.name}</Text>
@@ -73,10 +75,26 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   searchBar: {
-    backgroundColor: "#f1f1f1",
+    backgroundColor: "#fff",
     padding: 10,
     borderRadius: 8,
     marginBottom: 10,
+    width: "100%"
+  },
+  viewSearch: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    borderWidth: 1,
+    padding: 5,
+    display: "flex", 
+    borderColor: "#d7d7d7",
+    borderRadius: 8,
+    width: "100%",
+    
+  },
+  iconSearch: {
+
   },
   card: {
     flexDirection: "row",

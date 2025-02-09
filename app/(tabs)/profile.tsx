@@ -53,6 +53,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 20,
     backgroundColor: "#fff",
+
   },
   profileImage: {
     width: 100,

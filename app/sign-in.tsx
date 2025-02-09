@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, ActivityIndicator, StyleSheet, ScrollView, Image } from "react-native";
 import { useMutation } from "@tanstack/react-query";
 import { useSession } from "@/contexts/ctx";
-import { navigate } from "expo-router/build/global-state/routing";
 import { useNavigation } from "@react-navigation/native";
 import { router } from "expo-router";
 
@@ -43,7 +42,7 @@ const SignInScreen: React.FC = () => {
 
       <View>
         <Text style={styles.title}>Selamat Datang</Text>
-        <Text style={styles.subtitle}>Masukkan email dan password Anda</Text>
+        <Text style={styles.subtitle}>Silahkan login untuk masuk ke akun anda. Pastikan anda menggunakan akun yang telah terdaftar</Text>
       </View>
 
 
@@ -78,7 +77,7 @@ const styles = StyleSheet.create({
   input: { width: "100%", padding: 10, borderWidth: 1, borderColor: "#ccc", borderRadius: 8, marginBottom: 10 },
   button: { backgroundColor: "#fdbb2d", padding: 10, width: "100%", alignItems: "center", borderRadius: 8 },
   buttonText: { fontSize: 16, color: "#fff", fontWeight: "bold" },
-  subtitle: { marginTop: 10, color: "#b1b1b1`", fontWeight:"300", fontSize: 14,  },
+  subtitle: { marginTop: 10, color: "#b1b1b1`", fontWeight:"300", fontSize: 14, },
   image: {width: 200, height: 200,}
 });
 

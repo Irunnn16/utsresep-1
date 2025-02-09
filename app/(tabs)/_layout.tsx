@@ -1,20 +1,9 @@
 import { useSession } from "@/contexts/ctx";
 import { Octicons } from "@expo/vector-icons";
-import { Redirect, Tabs } from "expo-router";
-import { Text } from "react-native";
+import { Tabs } from "expo-router";
 
 export default function TabLayout () {
   const { session, isLoading } =useSession()
-
-  // if (isLoading) {
-  //   return <Text>Loading...</Text>
-  // } 
-
-  // if (!session) {
-  //   return <Redirect href="/sign-in" />  
-  // }
-    
-  
   
   return (
     <Tabs screenOptions={{headerShown: false}}>
