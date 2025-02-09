@@ -64,7 +64,7 @@ const SignInScreen: React.FC = () => {
       /> */}
 
       <TouchableOpacity style={styles.button} onPress={() => {signIn(); router.push("/(tabs)/home")}} disabled={isPending}>
-        {isPending ? <ActivityIndicator color="#fff" /> : <Text style={styles.buttonText}>✓  Sign In</Text>}
+        {isPending ? <ActivityIndicator color="#fff" /> : <Text style={styles.buttonText}>✓  Login</Text>}
       </TouchableOpacity>
       </View>
     </ScrollView>
@@ -76,8 +76,8 @@ const styles = StyleSheet.create({
   title: { fontSize: 24, fontWeight: "bold", color: "#212529"},
   input: { width: "100%", padding: 10, borderWidth: 1, borderColor: "#ccc", borderRadius: 8, marginBottom: 10 },
   button: { backgroundColor: "#fdbb2d", padding: 10, width: "100%", alignItems: "center", borderRadius: 8 },
-  buttonText: { fontSize: 16, color: "#fff", fontWeight: "bold" },
-  subtitle: { marginTop: 10, color: "#b1b1b1`", fontWeight:"300", fontSize: 14, },
+  buttonText: { fontSize: 16, color: "#fff", fontWeight: "bold", paddingHorizontal: 20, paddingVertical: 10, width: 111, height: 46 },
+  subtitle: { marginTop: 10, color: "#b1b1b1", fontWeight:"300", fontSize: 14, },
   image: {width: 200, height: 200,}
 });
 

@@ -1,5 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, Image, StyleSheet, ActivityIndicator, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  ActivityIndicator,
+  TouchableOpacity,
+  ScrollView,
+} from "react-native";
 import { router, useLocalSearchParams } from "expo-router";
 import { Octicons } from "@expo/vector-icons";
 
@@ -7,8 +15,8 @@ interface Resep {
   id: number;
   name: string;
   description: string;
-  ingredients: string;
-  instructions: string;
+  ingredients: string[];
+  instructions: string[];
   image: string;
 }
 
@@ -33,7 +41,7 @@ const ResepDetailScreen: React.FC = () => {
           setLoading(false);
         })
         .catch((error) => {
-          console.error("API Error:", error); 
+          console.error("API Error:", error);
           setError("Failed to fetch recipe details.");
           setLoading(false);
         });
@@ -68,37 +76,47 @@ const ResepDetailScreen: React.FC = () => {
   }
 
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.scrollContainer}>
+      <View style={styles.container}>
         <View style={styles.header}>
-        <TouchableOpacity onPress={() => router.back()}>
-        <Octicons name="arrow-left" style={{fontSize: 24}}/>
-        </TouchableOpacity>
-        <Text style={{fontSize: 20, fontWeight:"500"}}>Detail Resep</Text>
+          <TouchableOpacity onPress={() => router.back()}>
+            <Octicons name="arrow-left" style={{ fontSize: 24 }} />
+          </TouchableOpacity>
+          <Text style={{ fontSize: 20, fontWeight: "500" }}>Detail Resep</Text>
         </View>
         <Image source={{ uri: recipe.image }} style={styles.image} />
         <Text style={styles.title}>{recipe.name}</Text>
         <Text style={styles.description}>{recipe.description}</Text>
-       <View style={{gap: 5}}>
-        <Text>Bahan-bahan</Text>
-        <Text style={styles.subtitle}>{recipe.ingredients}</Text>
-       </View>
-       <View style={{gap: 5}}>
-       <Text>Cara pembuatan:</Text>
-       <Text style={styles.subtitle}>{recipe.instructions}</Text>
-       </View>
-    </View>
+        <View style={styles.views}>
+          <Text style={styles.subTitle}>Bahan-bahan</Text>
+          {recipe.ingredients.map((ingredient, index) => (
+            <Text key={index} style={styles.subtitle}>
+              • {ingredient}
+            </Text>
+          ))}
+        </View>
+        <View style={styles.views}>
+          <Text style={styles.subTitle}>Cara pembuatan:</Text>
+          {recipe.instructions.map((step, index) => (
+            <Text key={index} style={styles.subtitle}>
+              • {step}
+            </Text>
+          ))}
+        </View>
+      </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
+  scrollContainer: {
+    flexGrow: 1,
+  },
   container: {
     flex: 1,
     padding: 20,
     backgroundColor: "#fff",
     gap: 20,
-    alignItems: 'flex-start',
-    alignSelf: 'stretch',
-
   },
   loadingContainer: {
     flex: 1,
@@ -118,29 +136,36 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 24,
-    fontWeight: 700,
+    fontWeight: "700",
     marginBottom: 8,
   },
-  subtitle:{
+  subtitle: {
     fontSize: 14,
     fontWeight: "300",
-    lineHeight: 20
+    lineHeight: 20,
   },
   description: {
     fontSize: 16,
     color: "gray",
   },
   header: {
-    fontWeight: 500,
     marginBottom: 10,
+    paddingBottom: 20,
     borderBottomWidth: 1,
-    padding: 20,
+    borderBottomColor: "#d7d7d7",
     gap: 24,
     flexDirection: "row",
     alignItems: "center",
-    alignSelf: "stretch"
-  }
-
+  },
+  views: {
+    gap: 5,
+  },
+  subTitle: {
+    fontSize: 14,
+    fontWeight: 300,
+    marginBottom: 8,
+    color: "#b1b1b1"
+  },
 });
 
 export default ResepDetailScreen;
