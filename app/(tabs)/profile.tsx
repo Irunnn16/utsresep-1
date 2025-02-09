@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: 8,
     marginTop: 20,
-    top:100
+    top:50
   },
   logoutText: {
     fontSize: 16,
