@@ -1,7 +1,20 @@
+import { useMutation } from "@tanstack/react-query";
 import React from "react";
 import { View, Text, TextInput, Image, TouchableOpacity, StyleSheet } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 const ProfileScreen = () => {
+  const navigation = useNavigation();
+
+  const logoutMutation = useMutation({
+    mutationFn: async () => {
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+    },
+    onSuccess: () => {
+      navigation.navigate("sign-in" as never); 
+    },
+  });
+
   return (
     <View style={styles.container}>
       <Image
@@ -26,8 +39,10 @@ const ProfileScreen = () => {
         </Text>
       </View>
 
-      <TouchableOpacity style={styles.logoutButton}>
-        <Text style={styles.logoutText}> Keluar</Text>
+      <TouchableOpacity style={styles.logoutButton} onPress={() => logoutMutation.mutate()}>
+        <Text style={styles.logoutText}>
+          {logoutMutation.isPending ? "Keluar..." : "Keluar"}
+        </Text>
       </TouchableOpacity>
     </View>
   );

@@ -1,29 +1,44 @@
-import React from 'react';
-import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { Link, Tabs } from 'expo-router';
-import { Pressable } from 'react-native';
+import { useSession } from "@/contexts/ctx";
+import { Octicons } from "@expo/vector-icons";
+import { Redirect, Tabs } from "expo-router";
+import { Text } from "react-native";
 
-import Colors from '@/constants/Colors';
-import { useColorScheme } from '@/components/useColorScheme';
-import { useClientOnlyValue } from '@/components/useClientOnlyValue';
+export default function TabLayout () {
+  const { session, isLoading } =useSession()
 
-// You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
-function TabBarIcon(props: {
-  name: React.ComponentProps<typeof FontAwesome>['name'];
-  color: string;
-}) {
-  return <FontAwesome size={28} style={{ marginBottom: -3 }} {...props} />;
-}
+  // if (isLoading) {
+  //   return <Text>Loading...</Text>
+  // } 
 
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
+  // if (!session) {
+  //   return <Redirect href="/sign-in" />  
+  // }
+    
+  
+  
   return (
-    <Tabs>
-      <Tabs.Screen name='Home' />
-      <Tabs.Screen name='Resep' />
-      <Tabs.Screen name='Profile' />
-      
+    <Tabs screenOptions={{headerShown: false}}>
+      <Tabs.Screen name="home" options={{
+        tabBarLabel: "Home",
+        title: "Beranda",
+        tabBarIcon: ({color, size }) => (
+        <Octicons name="home" color={color} size={size} />
+        )
+      }}/>
+      <Tabs.Screen name="resep" options={{
+        tabBarLabel: "Resep",
+        title: "Resep",
+        tabBarIcon: ({color, size }) => (
+        <Octicons name="book" color={color} size={size} />
+        )
+      }} />
+       <Tabs.Screen name="profile" options={{
+        tabBarLabel: "Profile",
+        title: "Profile",
+        tabBarIcon: ({color, size }) => (
+        <Octicons name="person" color={color} size={size} />
+        )
+      }}/>
     </Tabs>
-  );
+  )
 }
